@@ -50,7 +50,7 @@ Produce one solution for each of the following threading schemes:
         2) Each thread must print to the console it's thread number and calculated value
         3) Each thread must execute in the order created, and be held until program termination
         4) When a fatal error occurs, the last printed thread number is counted as the max concurrent thread count
-        5) Highest concurrent thread count wins this challenge
+        5) Best overall statistics (concurrent thread count, memory usage, cpu usage, runtime, etc) wins this challenge
     2) Using a deep(ish) call stack (see below), spawn and execute 10,000,000 threads
         1) Deep is defined as 100 recursive calls
         2) A base random integer value must be produced
@@ -60,7 +60,7 @@ Produce one solution for each of the following threading schemes:
         6) Each thread must print to the console it's thread number and calculated value
         7) Each thread must execute in the order created, and be held until program termination
         8) When a fatal error occurs, the last printed thread number is counted as the max concurrent thread count
-        9) Highest concurrent thread count wins this challenge
+        9) Best overall statistics (concurrent thread count, memory usage, cpu usage, runtime, etc) wins this challenge
     3) Serve a provided html template to as many concurrent web socket requests as possible
         1) The html template will be provided in advance, but will remain simple
         2) The template will contain two basic variables which must be replaced by your program before serving every request
