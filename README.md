@@ -48,7 +48,7 @@ Produce one solution for each of the following threading schemes:
     1) Using a shallow call stack, spawn and execute 10,000,000 threads
         1) Each thread must calculate the product of two random integer values
         2) Each thread must print to the console it's thread number and calculated value
-        3) Each thread must execute in the order created, and held until program termination
+        3) Each thread must execute in the order created, and be held until program termination
         4) When a fatal error occurs, the last printed thread number is counted as the max concurrent thread count
         5) Highest concurrent thread count wins this challenge
     2) Using a deep(ish) call stack (see below), spawn and execute 10,000,000 threads
@@ -58,7 +58,7 @@ Produce one solution for each of the following threading schemes:
         4) The returned value is then multiplied or divided (alternating) at each level as the recursion unwraps
         5) Overflow is permitted - cast the final value as an integer at recursion return
         6) Each thread must print to the console it's thread number and calculated value
-        7) Each thread must execute in the order created, and held until program termination
+        7) Each thread must execute in the order created, and be held until program termination
         8) When a fatal error occurs, the last printed thread number is counted as the max concurrent thread count
         9) Highest concurrent thread count wins this challenge
     3) Serve a provided html template to as many concurrent web socket requests as possible
