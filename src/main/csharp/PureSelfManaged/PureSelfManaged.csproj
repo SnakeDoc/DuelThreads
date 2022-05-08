@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="obj\Debug\net6.0\apphost.exe" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.AssemblyInfoInputs.cache" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.assets.cache" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.csproj.AssemblyReference.cache" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.csproj.CoreCompileInputs.cache" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.csproj.FileListAbsolute.txt" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.dll" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.GeneratedMSBuildEditorConfig.editorconfig" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.genruntimeconfig.cache" />
+      <Content Include="obj\Debug\net6.0\PureSelfManaged.pdb" />
+      <Content Include="obj\Debug\net6.0\refint\PureSelfManaged.dll" />
+      <Content Include="obj\Debug\net6.0\ref\PureSelfManaged.dll" />
+      <Content Include="obj\project.assets.json" />
+      <Content Include="obj\project.nuget.cache" />
+      <Content Include="obj\project.packagespec.json" />
+      <Content Include="obj\PureSelfManaged.csproj.nuget.dgspec.json" />
+      <Content Include="obj\PureSelfManaged.csproj.nuget.g.props" />
+      <Content Include="obj\PureSelfManaged.csproj.nuget.g.targets" />
+      <Content Include="obj\rider.project.restore.info" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+      <Compile Include="obj\Debug\net6.0\PureSelfManaged.AssemblyInfo.cs" />
+      <Compile Include="obj\Debug\net6.0\PureSelfManaged.GlobalUsings.g.cs" />
+    </ItemGroup>
+
+</Project>
