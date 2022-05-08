@@ -1,6 +1,6 @@
-﻿namespace PureSelfManaged.Extensions;
+﻿namespace DuelThreads.Common.Extensions;
 
-public static class Extensions
+public static class LinqExtensions
 {
     public static IEnumerable<T> Tap<T>(this IEnumerable<T> ts, Action action)
     {
@@ -10,7 +10,7 @@ public static class Extensions
             yield return t;
         }
     }
-    
+
     public static IEnumerable<T> Tap<T>(this IEnumerable<T> ts, Action<T> action)
     {
         foreach (var t in ts)

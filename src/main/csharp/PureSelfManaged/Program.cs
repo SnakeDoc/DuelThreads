@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-
-using static System.Console;
+﻿using static System.Console;
 using static System.Linq.Enumerable;
+
+using static DuelThreads.Common.Utils.Auditor;
 
 namespace PureSelfManaged;
 
@@ -52,22 +52,6 @@ internal static class Program
     private static IEnumerable<int> GetRange() => Range(0, Total);
 
     private static IEnumerable<Thread> GetThreads() => GetRange().Select(_ => new Thread(Add));
-
-    private static double Audit(Action action)
-    {
-        var watch = new Stopwatch();
-        watch.Start();
-        try
-        {
-            action();
-        }
-        catch (Exception e)
-        {
-            WriteLine(e.Message);
-        }
-        watch.Stop();
-        return watch.Elapsed.TotalSeconds;
-    }
 
     private static void Add()
     {

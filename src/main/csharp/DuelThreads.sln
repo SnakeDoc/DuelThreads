@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureSelfManaged", "PureSelfManaged\PureSelfManaged.csproj", "{1021B0A2-FF7A-4777-85BC-1D7AA666368A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.Common", "DuelThreads.Common\DuelThreads.Common.csproj", "{4514A72C-718C-4649-A0C3-9FC3B41959C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1021B0A2-FF7A-4777-85BC-1D7AA666368A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1021B0A2-FF7A-4777-85BC-1D7AA666368A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1021B0A2-FF7A-4777-85BC-1D7AA666368A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
