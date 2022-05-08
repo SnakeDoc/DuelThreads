@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureSelfManaged", "PureSelfManaged\PureSelfManaged.csproj", "{1021B0A2-FF7A-4777-85BC-1D7AA666368A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.PureSelfManaged", "DuelThreads.PureSelfManaged\DuelThreads.PureSelfManaged.csproj", "{1021B0A2-FF7A-4777-85BC-1D7AA666368A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.Common", "DuelThreads.Common\DuelThreads.Common.csproj", "{4514A72C-718C-4649-A0C3-9FC3B41959C0}"
 EndProject

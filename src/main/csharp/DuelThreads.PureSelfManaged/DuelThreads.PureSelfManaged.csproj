@@ -31,12 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
-      <Compile Include="obj\Debug\net6.0\PureSelfManaged.AssemblyInfo.cs" />
-      <Compile Include="obj\Debug\net6.0\PureSelfManaged.GlobalUsings.g.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\DuelThreads.Common\DuelThreads.Common.csproj" />
     </ItemGroup>
 

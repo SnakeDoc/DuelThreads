@@ -3,7 +3,7 @@ using static System.Linq.Enumerable;
 
 using static DuelThreads.Common.Utils.Auditor;
 
-namespace PureSelfManaged;
+namespace DuelThreads.PureSelfManaged;
 
 internal static class Program
 {
