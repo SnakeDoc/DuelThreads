@@ -10,7 +10,7 @@ internal static class Program
     private const string Format = "{0} | {1}";
     private const string AuditStartMsg = "Starting {0}...";
     private const string AuditFinishMsg = "{0} completed in {1} seconds..";
-    private const int Total = 5_000; // 10_000_000
+    private const int Total = 10_000; // 10_000_000
     
     private static readonly Random Random = new(DateTime.Now.Millisecond);
     private static readonly SemaphoreSlim ParentSem = new(1, 1);
@@ -43,6 +43,7 @@ internal static class Program
                 thread.Start();
             }
 
+            ParentSem.Wait();
             ChildSem.Release(threads.Count);
             threads.ForEach(thread => thread.Join());
         });
