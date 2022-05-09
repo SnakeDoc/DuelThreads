@@ -22,41 +22,43 @@ internal static class Program
         RunSequentialJoin();
     }
 
-    private static double RunBaseLine() => Audit(() => GetRange()
-        .ToList()
-        .ForEach(_ => Add()));
+    private static double RunBaseLine() => Audit(() =>
+        GetRange()
+            .ToList()
+            .ForEach(Add));
 
     private static void RunSequentialJoin()
     {
-        WriteLine(AuditStartMsg, nameof(RunSequentialJoin));
+        const string name = nameof(RunSequentialJoin);
+        WriteLine(AuditStartMsg, name);
         var runtime = Audit(() =>
         {
             List<Thread> threads = new();
-            for (var i = 0; i < Total; ++i)
+            foreach(var i in GetRange())
             {
                 ParentSem.Wait();
-                var thread = new Thread(Add)
-                {
-                    Name = i.ToString()
-                };
+                var thread = new Thread(() => Add(i));
                 threads.Add(thread);
                 thread.Start();
             }
 
             ParentSem.Wait();
             ChildSem.Release(threads.Count);
-            threads.ForEach(thread => thread.Join());
+            // It's not necessary to join foreground threads...
+            // the main thread will await them all.
+            //threads.ForEach(thread => thread.Join());
         });
-        WriteLine(AuditFinishMsg, nameof(RunSequentialJoin), runtime);
+        WriteLine(AuditFinishMsg, name, runtime);
     } 
 
     private static IEnumerable<int> GetRange() => Range(0, Total);
 
-    private static IEnumerable<Thread> GetThreads() => GetRange().Select(_ => new Thread(Add));
+    private static IEnumerable<Thread> GetThreads() => GetRange()
+        .Select(i => new Thread(() => Add(i)));
 
-    private static void Add()
+    private static void Add(int thread)
     {
-        WriteLine(Format, Thread.CurrentThread.Name, Random.Next() * Random.Next());
+        WriteLine(Format, thread, Random.Next() * Random.Next());
         ParentSem.Release();
         ChildSem.Wait();
     }
