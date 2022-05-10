@@ -1,6 +1,7 @@
 package duel.threads;
 
-import duel.threads.test.impl.ChallengeOneTest;
+import duel.threads.test.impl.ChallengeOnePoolManagedTest;
+import duel.threads.test.impl.ChallengeOneSelfManagedTest;
 
 import java.util.concurrent.ThreadFactory;
 
@@ -22,11 +23,20 @@ public class Main {
 
         switch (arguments.getChallengeNumber()) {
             case ONE -> {
-                new ChallengeOneTest(threadFactory, arguments.getNumberOfThreads())
-                        .run();
+                switch (arguments.getManagementType()) {
+                    case SELF -> {
+                        new ChallengeOneSelfManagedTest(threadFactory, arguments.getNumberOfThreads()).run();
+                    }
+                    case POOL -> {
+                        new ChallengeOnePoolManagedTest(threadFactory, arguments.getNumberOfThreads()).run();
+                    }
+                    case ASYNC -> {
+                        throw new UnsupportedOperationException("Async not implemented!");
+                    }
+                };
             }
-            case TWO, THREE -> {}
-        }
+            case TWO, THREE -> { throw new UnsupportedOperationException("Challenge Number not implemented!"); }
+        };
 
     }
 
@@ -35,9 +45,10 @@ public class Main {
                 Required Parameters:
                     Challenge Number <1|2|3>
                     Thread Type <plat|virt>
+                    Management Type <self|pool|async>
                     Number of Threads <integer>
                 
-                Example: 1 virt 100000
+                Example: 1 virt none 100000
                 """);
     }
 
@@ -45,15 +56,17 @@ public class Main {
 
         private enum ThreadType { PLATFORM, VIRTUAL}
         private enum ChallengeNumber { ONE, TWO, THREE }
+        private enum ManagementType { SELF, POOL, ASYNC }
 
         private ChallengeNumber challengeNumber;
         private ThreadType threadType;
+        private ManagementType managementType;
         private int numberOfThreads;
 
         public void parseArguments(String[] args) {
 
-            if (args.length < 3) throw new IllegalArgumentException("Too few arguments!");
-            if (args.length > 3) throw new IllegalArgumentException("Too many arguments!");
+            if (args.length < 4) throw new IllegalArgumentException("Too few arguments!");
+            if (args.length > 4) throw new IllegalArgumentException("Too many arguments!");
 
             try {
                 challengeNumber = switch (Integer.parseInt(args[0])) {
@@ -71,8 +84,15 @@ public class Main {
                 default -> throw new IllegalArgumentException("No Thread Type matched on '" + args[1] + "'");
             };
 
+            managementType = switch (args[2].toLowerCase()) {
+                case "self" -> ManagementType.SELF;
+                case "pool" -> ManagementType.POOL;
+                case "async" -> ManagementType.ASYNC;
+                default -> throw new IllegalArgumentException("No Management Type matched on '" + args[2] + "'");
+            };
+
             try {
-                numberOfThreads = Integer.parseInt(args[2]);
+                numberOfThreads = Integer.parseInt(args[3]);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("Not a valid number of threads - '" + args[2] + "'", e);
             }
@@ -85,6 +105,10 @@ public class Main {
 
         public ThreadType getThreadType() {
             return threadType;
+        }
+
+        public ManagementType getManagementType() {
+            return managementType;
         }
 
         public int getNumberOfThreads() {
