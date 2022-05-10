@@ -17,10 +17,11 @@ public class Main {
             return;
         }
 
+        final ThreadFactory threadFactory = (arguments.getThreadType() == Arguments.ThreadType.VIRTUAL)
+                ? Thread.ofVirtual().factory() : Thread.ofPlatform().factory();
+
         switch (arguments.getChallengeNumber()) {
             case ONE -> {
-                final ThreadFactory threadFactory = (arguments.getThreadType() == Arguments.ThreadType.VIRTUAL)
-                        ? Thread.ofVirtual().factory() : Thread.ofPlatform().factory();
                 new ChallengeOneTest(threadFactory, arguments.getNumberOfThreads())
                         .run();
             }

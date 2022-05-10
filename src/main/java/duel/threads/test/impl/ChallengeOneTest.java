@@ -5,7 +5,9 @@ import duel.threads.test.BasicTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ThreadFactory;
 
 public class ChallengeOneTest extends BasicTest {
@@ -23,18 +25,23 @@ public class ChallengeOneTest extends BasicTest {
 
         final List<Thread> threads = new ArrayList<>();
         final CountDownLatch parent = new CountDownLatch(1);
+        final CyclicBarrier child = new CyclicBarrier(2);
 
         setStartTime();
 
         for (int i = 1; i <= numberOfThreads; i++) {
 
-            final CountDownLatch child = new CountDownLatch(1);
             final Thread thread = threadFactory.newThread(new ChallengeOneTask(i, parent, child));
 
             threads.add(thread);
             thread.start();
 
-            child.await(); // wait for child to complete before starting next thread
+            try {
+                child.await(); // wait for child to complete before starting next thread
+            } catch (BrokenBarrierException e) {
+                throw new InterruptedException(e.getMessage());
+            }
+            child.reset();
 
         }
 
