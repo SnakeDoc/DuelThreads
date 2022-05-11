@@ -61,7 +61,19 @@ Produce one solution for each of the following threading schemes:
         7) Each thread must execute in the order created, and be held until program termination
         8) When a fatal error occurs, the last printed thread number is counted as the max concurrent thread count
         9) Best overall statistics (concurrent thread count, memory usage, cpu usage, runtime, etc) wins this challenge
-    3) Serve a provided html template to as many concurrent web socket requests as possible
+    3) Calculate pi successfully as many times as possible within a specified time limit
+        1) Each thread shall calculate pi using the Chudnovsky Method to a randomized precision
+            1) [https://en.wikipedia.org/wiki/Chudnovsky_algorithm](https://en.wikipedia.org/wiki/Chudnovsky_algorithm)
+            2) Example Python Implemenation (no optimizations): [https://www.craig-wood.com/nick/articles/pi-chudnovsky/](https://www.craig-wood.com/nick/articles/pi-chudnovsky/)
+        2) Precision shall be randomized between 10,000 and 200,000 digits
+        3) The thread shall return the calculated pi value back to the parent
+        4) The parent shall validate the calculation
+            1) A pre-computed pi file is provided ([https://piday.org/million/)](https://piday.org/million/)) with a precision of 500,000 digits
+            2) All digits must validate, including the integral portion of the figure
+        5) Validated calculations count towards total successes. Failed calcuations are not counted.
+        6) Threads may be released at will
+        7) The most number of successful calculations within 5 minutes wins this challenge
+    4) Serve a provided html template to as many concurrent web socket requests as possible
         1) The html template will be provided in advance, but will remain simple
         2) The template will contain two basic variables which must be replaced by your program before serving every request
         3) The template variables will be the thread number and UNIX Epoch timestamp in milliseconds
