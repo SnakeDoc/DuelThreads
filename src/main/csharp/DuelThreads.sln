@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.PureSelfManaged
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.Common", "DuelThreads.Common\DuelThreads.Common.csproj", "{4514A72C-718C-4649-A0C3-9FC3B41959C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuelThreads.Runner", "DuelThreads.Runner\DuelThreads.Runner.csproj", "{76588CB7-21D5-4939-81FB-B22F8D833C98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4514A72C-718C-4649-A0C3-9FC3B41959C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76588CB7-21D5-4939-81FB-B22F8D833C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76588CB7-21D5-4939-81FB-B22F8D833C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76588CB7-21D5-4939-81FB-B22F8D833C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76588CB7-21D5-4939-81FB-B22F8D833C98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
