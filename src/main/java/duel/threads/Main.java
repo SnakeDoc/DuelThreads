@@ -1,5 +1,6 @@
 package duel.threads;
 
+import duel.threads.test.impl.ChallengeOneAsyncTest;
 import duel.threads.test.impl.ChallengeOnePoolManagedTest;
 import duel.threads.test.impl.ChallengeOneSelfManagedTest;
 
@@ -31,7 +32,7 @@ public class Main {
                         new ChallengeOnePoolManagedTest(threadFactory, arguments.getNumberOfThreads()).run();
                     }
                     case ASYNC -> {
-                        throw new UnsupportedOperationException("Async not implemented!");
+                        new ChallengeOneAsyncTest(threadFactory, arguments.getNumberOfThreads()).run();
                     }
                 };
             }
