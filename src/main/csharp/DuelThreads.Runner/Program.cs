@@ -12,16 +12,6 @@ internal class Program
     
     private enum Challenge { PureSelfManaged, PurePoolManaged, Async, Lightweight }
 
-    private record Arguments(Challenge Challenge, int Threads)
-    {
-        internal static Arguments FromCliArguments(IReadOnlyList<string> args)
-        {
-            int.TryParse(args[0], out var challenge);
-            int.TryParse(args[1], out var threads);
-            return new Arguments((Challenge) challenge, threads);
-        }
-    }
-
     private static Dictionary<Challenge, string> PathMap { get; } = new()
     {
         {Challenge.PureSelfManaged, Format(PathFormat, nameof(Challenge.PureSelfManaged))},
@@ -32,13 +22,18 @@ internal class Program
     
     public static void Main(string[] args)
     {
-        var arguments = Arguments.FromCliArguments(args);
-        var exePath = PathMap[arguments.Challenge];
-        WriteLine($"Runner running {arguments.Challenge} challenge using {arguments.Threads} threads.");
-        var process = Process.Start(exePath, arguments.Threads.ToString());
-        //process.StandardOutput.ReadToEnd();
+        var (challenge, threads, path) = ParseArgs(args);
+        WriteLine($"Runner running {challenge} challenge using {threads} threads.");
+        var process = Process.Start(path, threads.ToString());
         process.WaitForExit();
         WriteLine("Runner completed.");
     }
+    
+    private static (Challenge, int, string) ParseArgs(string[] args)
+    {
+        int.TryParse(args[0], out var which);
+        int.TryParse(args[1], out var threads);
+        var challenge = (Challenge) which;
+        return (challenge, threads, PathMap[challenge]);
+    }
 }
-

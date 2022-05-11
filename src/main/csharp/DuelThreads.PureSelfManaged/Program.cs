@@ -10,14 +10,18 @@ internal static class Program
     private const string Format = "{0} | {1}";
     private const string AuditStartMsg = "Starting {0}...";
     private const string AuditFinishMsg = "{0} completed in {1} seconds..";
-    private const int Total = 10_000; // 10_000_000
     
     private static readonly Random Random = new(DateTime.Now.Millisecond);
     private static readonly SemaphoreSlim ParentSem = new(1, 1);
     private static readonly SemaphoreSlim ChildSem = new(0, int.MaxValue);
+
+    private static int _threads;
     
-    public static void Main()
+    internal static void Main(string[] args)
     {
+        _threads = int.Parse(args.Length == 2
+            ? args.Last()
+            : args.First());
         // var baseLine = RunBaseLine();
         RunSequentialJoin();
     }
@@ -51,7 +55,7 @@ internal static class Program
         WriteLine(AuditFinishMsg, name, runtime);
     } 
 
-    private static IEnumerable<int> GetRange() => Range(0, Total);
+    private static IEnumerable<int> GetRange() => Range(0, _threads);
 
     private static IEnumerable<Thread> GetThreads() => GetRange()
         .Select(i => new Thread(() => Add(i)));
