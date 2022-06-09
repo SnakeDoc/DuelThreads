@@ -3,6 +3,7 @@ package duel.threads;
 import duel.threads.test.impl.ChallengeOneAsyncTest;
 import duel.threads.test.impl.ChallengeOnePoolManagedTest;
 import duel.threads.test.impl.ChallengeOneSelfManagedTest;
+import duel.threads.test.impl.ChallengeThreeAsyncTest;
 
 import java.util.concurrent.ThreadFactory;
 
@@ -36,7 +37,14 @@ public class Main {
                     }
                 };
             }
-            case TWO, THREE -> { throw new UnsupportedOperationException("Challenge Number not implemented!"); }
+            case THREE -> {
+                switch (arguments.getManagementType()) {
+                    case ASYNC -> {
+                        new ChallengeThreeAsyncTest(threadFactory, arguments.getNumberOfThreads()).run();
+                    }
+                }
+            }
+            case TWO, FOUR -> { throw new UnsupportedOperationException("Challenge Number not implemented!"); }
         };
 
     }
@@ -56,7 +64,7 @@ public class Main {
     private static class Arguments {
 
         private enum ThreadType { PLATFORM, VIRTUAL}
-        private enum ChallengeNumber { ONE, TWO, THREE }
+        private enum ChallengeNumber { ONE, TWO, THREE, FOUR }
         private enum ManagementType { SELF, POOL, ASYNC }
 
         private ChallengeNumber challengeNumber;
@@ -72,7 +80,8 @@ public class Main {
             try {
                 challengeNumber = switch (Integer.parseInt(args[0])) {
                     case 1 -> ChallengeNumber.ONE;
-                    case 2, 3 -> throw new UnsupportedOperationException("No Solution For Challenge Number '" + args[0] + "'");
+                    case 3 -> ChallengeNumber.THREE;
+                    case 2, 4 -> throw new UnsupportedOperationException("No Solution For Challenge Number '" + args[0] + "'");
                     default -> throw new IllegalArgumentException("No Challenge Number matched on '" + args[0] + "'");
                 };
             } catch (NumberFormatException e) {
@@ -114,6 +123,12 @@ public class Main {
 
         public int getNumberOfThreads() {
             return numberOfThreads;
+        }
+
+        @Override
+        public String toString() {
+            return "Challenge Number: " + getChallengeNumber() + "; Thread Type: " + getThreadType()
+                    + "; Management Type: " + getManagementType() + "; Number of Threads: " + getNumberOfThreads();
         }
 
     }

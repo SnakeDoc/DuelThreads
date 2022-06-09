@@ -14,7 +14,7 @@ public class ChallengeOneAsyncTest extends ChallengeOneTest {
 
     private final List<CompletableFuture<?>> futures = new ArrayList<>();
 
-    protected ChallengeOneAsyncTest(ExecutorService executorService, int numberOfThreads) {
+    public ChallengeOneAsyncTest(ExecutorService executorService, int numberOfThreads) {
         super(executorService, numberOfThreads);
     }
 
