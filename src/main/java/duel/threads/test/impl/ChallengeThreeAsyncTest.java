@@ -8,14 +8,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 public class ChallengeThreeAsyncTest extends ChallengeThreeTest {
 
@@ -46,27 +44,12 @@ public class ChallengeThreeAsyncTest extends ChallengeThreeTest {
     @Override
     public void run() throws InterruptedException {
 
-        // TODO try map and reduce to just successes... we already know how many we spawned
-        var completableFutures = new ArrayList<CompletableFuture<Boolean>>();
-        for (int i = 1; i <= numberOfThreads; i++) {
-            final var precision = getRandomPrecision();
-            final var threadNumber = i;
-            System.out.println("Thread# " + threadNumber + " | precision: " + precision);
+        final int successCount = IntStream.rangeClosed(1, numberOfThreads)
+                .parallel()
+                .map(threadNumber -> PiValidator.isValid(new ChallengeThreeTask(threadNumber, getRandomPrecision()).get()) ? 1 : 0)
+                .reduce(0, Integer::sum);
 
-            completableFutures.add(
-                    CompletableFuture.supplyAsync(new ChallengeThreeTask(threadNumber, precision), executorService)
-                            .thenApplyAsync(PiValidator::isValid));
-        }
-
-        completableFutures.parallelStream().forEach((future) -> {
-            try {
-                System.out.println("Thread # " + " result: " + future.get());
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        System.out.println(successCount + " out of " + numberOfThreads + " - " + successCount / (double) numberOfThreads * 100 + "%");
     }
 
     @Override
