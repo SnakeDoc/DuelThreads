@@ -68,13 +68,15 @@ Produce one solution for each of the following threading schemes:
         2) Precision shall be randomized between 10,000 and 200,000 digits
         3) The thread shall return the calculated pi value back to the parent
         4) The parent shall validate the calculation
+        5) https://cs.uwaterloo.ca/~alopez-o/math-faq/mathtext/node12.html
+        6) https://pi-calculator.netlify.app/
             1) A pre-computed pi file is provided ([https://piday.org/million/)](https://piday.org/million/)) with a precision of 500,000 digits
             2) All digits must validate, including the integral portion of the figure
-        5) Validated calculations count towards total successes. Failed calcuations are not counted.
-        6) The parent maintain the number of successes and failures
-        7) The number of successes and failures shall be printed to the console at the end of the time limit
-        8) Threads may be released at will
-        9) The most number of successful calculations within 5 minutes wins this challenge
+        7) Validated calculations count towards total successes. Failed calcuations are not counted.
+        8) The parent maintain the number of successes and failures
+        9) The number of successes and failures shall be printed to the console at the end of the time limit
+        10) Threads may be released at will
+        11) The most number of successful calculations within 5 minutes wins this challenge
     4) Serve a provided html template to as many concurrent web socket requests as possible
         1) The html template will be provided in advance, but will remain simple
         2) The template will contain two basic variables which must be replaced by your program before serving every request
